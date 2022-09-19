@@ -4,6 +4,7 @@
 // @version      0.1
 // @description  高速下载gihthub
 // @author       Joye-bot
+// @license      GPL-3.0 License
 // @match        *://github.com/*
 // @match        *://github*
 // @icon         https://github.githubassets.com/favicon.ico
