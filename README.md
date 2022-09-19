@@ -1,5 +1,5 @@
 # MyScripts
-自用的一些油猴脚本，有什么需求、建议、问题直接提[Issues](https://github.com/Joye-bot/MyScripts/issues/new)，觉得不错请点个`status`叭~
+自用的一些油猴脚本，有什么需求、建议、问题直接提[Issues](https://github.com/Joye-bot/MyScripts/issues/new)，觉得不错请点个`star`叭~
 
 ## 脚本列表
 ||脚本名称|脚本功能|脚本链接|
