@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Github Download
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  高速下载gihthub
 // @author       Joye-bot
 // @license      GPL-3.0 License
@@ -29,8 +29,9 @@
         // ["https://gh.ddlc.top/https://github.com", "ddlc", "由 [@mtr-static-official] 提供"]
         // ['https://gh2.yanqishui.work/https://github.com', 'yanqishui', '由 [@HongjieCN] 提供'],
         ['https://ghdl.feizhuqwq.cf/https://github.com', 'feizhuqwq', '由 [feizhuqwq.com] 提供'],
-        ['https://gh-proxy-misakano7545.koyeb.app/https://github.com', 'koyeb', ''],
+        // ['https://gh-proxy-misakano7545.koyeb.app/https://github.com', 'koyeb', ''],
         ['https://gh.flyinbug.top/gh/https://github.com', 'flyinbug', '由 [Mintimate] 提供'],
+        ['https://github.91chi.fun/https://github.com', '91chi', ''],
     ];
 
     const sshUrl = [
@@ -190,14 +191,68 @@
         addSSHList();
         addDownloadZip();
         if (location.pathname.split("/")[3] === "releases") {
-            setTimeout(function () {
-                addReleasesList();
-            }, 1000);
+            addReleasesList();
         }
         if (location.pathname.split("/")[3] === "tags") {
             addTagsList();
         }
+
+        if (window.onurlchange === undefined) {
+            addUrlChangeEvent();
+        }
+        window.addEventListener('urlchange', function () {
+            addCloneList();
+            addSSHList();
+            addDownloadZip();
+            if (location.pathname.split("/")[3] === "releases") {
+                addReleasesList();
+            }
+            if (location.pathname.split("/")[3] === "tags") {
+                addTagsList();
+            }
+        });
+
+        const callback = (mutationsList) => {
+            if (location.pathname.indexOf('/releases') === -1) return;
+            for (const mutation of mutationsList) {
+                for (const target of mutation.addedNodes) {
+                    if (target.nodeType !== 1) return;
+                    if (target.tagName === 'DIV' && target.dataset.viewComponent === 'true' && target.classList[0] === 'Box') {
+                        addReleasesList();
+                    }
+                }
+            }
+        };
+        const observe = new MutationObserver(callback);
+        const options = {
+            childList: true,
+            subtree: true
+        };
+        observe.observe(document, options);
     }
 
     run();
+
+    /**
+     * 添加url地址改变事件
+     */
+    function addUrlChangeEvent() {
+        history.pushState = (f => function pushState() {
+            let ret = f.apply(this, arguments);
+            window.dispatchEvent(new Event('pushstate'));
+            window.dispatchEvent(new Event('urlchange'));
+            return ret;
+        })(history.pushState);
+
+        history.replaceState = (f => function replaceState() {
+            let ret = f.apply(this, arguments);
+            window.dispatchEvent(new Event('replacestate'));
+            window.dispatchEvent(new Event('urlchange'));
+            return ret;
+        })(history.replaceState);
+
+        window.addEventListener('popstate', () => {
+            window.dispatchEvent(new Event('urlchange'));
+        });
+    }
 })();
