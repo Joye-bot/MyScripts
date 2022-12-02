@@ -2,9 +2,10 @@
 自用的一些油猴脚本，有什么需求、建议、问题直接提[Issues](https://github.com/Joye-bot/MyScripts/issues/new)，觉得不错请点个`star`叭~
 
 ## 脚本列表
-||脚本名称|脚本功能|脚本链接|
-|:----:|:----:|:----:|:----:|
-|<img src="https://i.loli.net/2021/03/30/ULV9XunaHesqGIR.png" height="16px" />|Github Download|高速下载（git clone/ssh、download zip、releases、tags）|[安装](https://greasyfork.org/zh-CN/scripts/451642-github-download)|
+|                                                                               |      脚本名称       |                      脚本功能                      |                                 脚本链接                              |
+|:-----------------------------------------------------------------------------:|:---------------:|:----------------------------------------------:|:-----------------------------------------------------------------:|
+| <img src="https://i.loli.net/2021/03/30/ULV9XunaHesqGIR.png" height="16px" /> | Github Download | 高速下载（git clone/ssh、download zip、releases、tags） |  [安装](https://greasyfork.org/zh-CN/scripts/451642-github-download) |
+|                                                                               |      Color      |                  去除网站灰度，恢复彩色                   |       [安装](https://greasyfork.org/zh-CN/scripts/455842-color)     |
 
 ## License
 
