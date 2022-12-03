@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Color
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  去除灰色，恢复彩色
 // @author       Joye-bot
 // @license      GPL-3.0 License
@@ -17,9 +17,6 @@
     let style = document.createElement("style");
     style.innerHTML = "* {filter: none !important;}";
     document.head.appendChild(style);
-
-    document.getElementById("logo").getElementsByTagName("a")[0].getElementsByTagName("img")[0].setAttribute("src", "https://www.baidu.com/img/flexible/logo/logo_web.png");
-    console.log(document.getElementById("logo"));
 
     let url = window.location.href;
 
